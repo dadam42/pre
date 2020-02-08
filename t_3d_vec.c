@@ -19,7 +19,6 @@ float	t_3d_vec_scalar_product(t_3d_vec vec1, t_3d_vec vec2)
 void	t_3d_vec_vectorial_product(t_3d_vec	vec1, t_3d_vec vec2, t_3d_vec res)
 {
 	res[0] = vec1[1] * vec2[2] - vec1[2] * vec2[1];
-	printf("%.2f = %.2f * %.2f - %.2f * %.2f \n", res[0], vec1[1], vec2[2], vec1[2], vec2[1]);
 	res[1] = -vec1[0] * vec2[2] + vec1[2] * vec2[0];
 	res[2] = vec1[0] * vec2[1] - vec2[0] * vec1[1];
 }

@@ -1,6 +1,7 @@
 #include "t_3d_mat.h"
 #include "t_3d_vec.h"
 #include "float_conf.h"
+#include <stdio.h>
 
 static	void	extract_2d_mat(t_3d_mat mat, int l, int c, float res[])
 {
@@ -29,7 +30,7 @@ static	void	extract_2d_mat(t_3d_mat mat, int l, int c, float res[])
 
 float	t_3d_mat_det(t_3d_mat m)
 {
-	return (t_3d_vec_mix_product(m[1], m[2], m[3]));
+	return (t_3d_vec_mix_product(m[0], m[1], m[2]));
 }
 
 void	t_3d_mat_inv(t_3d_mat m, float det, t_3d_mat res)
@@ -42,12 +43,14 @@ void	t_3d_mat_inv(t_3d_mat m, float det, t_3d_mat res)
 	while (ldx < 3)
 	{
 		cdx = 0;
-		while (cdx < 0)
+		while (cdx < 3)
 		{
 			extract_2d_mat(m, ldx, cdx, ext);
 			res[cdx][ldx] = ((cdx + ldx) % 2 ? -1 : 1)
-							* (ext[1] * ext[4] - ext[2] * ext[3]) / det;
+							* (ext[0] * ext[3] - ext[1] * ext[2]) / det;
+			cdx++;
 		}
+		ldx++;
 	}
 }
 
