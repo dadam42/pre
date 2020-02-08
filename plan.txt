@@ -44,8 +44,22 @@ Algorithme de Lancer de Rayon au travers du pixel P :
 		- rayon de vue
 		- scène.
 	Algorithme :
+	2.0) Initialiser correctement le rayon lanc\'e.
 	2.1) Récupérer la première intersection du rayon de vue via un shader.
 	2.2) Récuperer la couleur du shader dans la direction du rayon de vue.
+
+2.0) Initialisation d'un rayon :
+		Deux initialisations possibles : 
+			- si on sait deja que le rayon a intialiser rebondit sur la surface d'un objet,
+				Initialisation simple : 
+				* on fournit la position, la direction et l'indice de vitesse.
+			- si le rayon a initialiser sort de la camera :
+				Initialisation detaillee : 
+				* position du lanc\'e
+				* direction du lanc\'e
+				* si position camera sur la surface d'un objet de la scene 
+					et si la direction de la camera est sur le plan tangent 
+					il y a surement un probleme a resoudre...
 
 2.1) Récupérer la première intersection du rayon de vue via un shader :
 	Donnée :

@@ -1,5 +1,6 @@
 #include "t_3d_vec.h"
 #include <stdio.h>
+#include <math.h>
 
 float	t_3d_vec_scalar_product(t_3d_vec vec1, t_3d_vec vec2)
 {
@@ -39,6 +40,25 @@ void	t_3d_vec_combine(float a, t_3d_vec va, t_3d_vec vb, t_3d_vec res)
 	while (idx < 3)
 	{
 		res[idx] = a * va[idx] + vb[idx];
+		idx++;
+	}
+}
+
+float	t_3d_vec_sqnorm(t_3d_vec v)
+{
+	return (v[0] * v[0] + v[1] * v[1] + v[2] * v[2]);
+}
+
+float	t_3d_vec_normalize_inplace(t_3d_vec v)
+{
+	int idx;
+	float norm;
+
+	norm = sqrt(t_3d_vec_sqnorm(v));
+	idx = 0;
+	while (idx < 3)
+	{
+		v[idx] /= norm;
 		idx++;
 	}
 }
