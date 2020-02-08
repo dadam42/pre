@@ -1,0 +1,60 @@
+Notations:
+	C.donnée : donnée de la caméra.
+
+Mettre dans les shaders tout ce dont peut avoir besoin l'algorithme de lancer de rayon
+
+shader :
+	position du point dans l'espace;
+	normale unitaire au point;
+	données matières;
+	void	*expand;
+
+Algorithme de rendu de scene par la camera :
+	Données :
+		- Scène, y compris la caméra.
+	Pour tous les pixels de la caméra, dans la scène 
+
+Algorithme de Lancer de Rayon au travers du pixel P :
+	Données : 
+		-	Repère de la scène (repère canonique).
+		-	Données liées à la caméra.
+	Algorithme :
+	1) Déterminer le centre du pixel dans les coordonnées de la scène
+	2) Lancer un rayon de vue 
+	3) Déterminer l'intensitée colorique du rayon de vue
+	4) Enregistrer cette intensité dans le pixel P.
+
+1) Détermination du centre du pixel P de position i, j sur l'écran :
+	Données: 
+		-	Repère de la scèene (repère canonique).
+		-	Données de la caméra.
+	Remarques : 
+		- C.pos + C.dir_vue = Centre de l'écran.
+		- C.dir_vue vect C.dir_haut = dir_droite;
+		- point_haut_gauche = - C.of . dir_droite + C.of . dir_haut
+		- point_bas_droite - = point_haut_gauche. (dans le repere de centre Centre de l'écran).
+		- C.ratio = C.hdef / C.vdef
+		- abs_incr = 2 C.of / C.hdef
+		- ord_incr = 2 C.of / C.vdef
+	Le centre du pixel P de position i, j sur l'écran :
+		- point_haut_gauche + (i + 1/2) * abs_inc * dir_droite - (j + 1/2) * ord_inc * C.dir_haut
+
+2) Lancer le rayon de vue : Colorer un rayon de vue:
+	Donnée :
+		- rayon de vue
+		- scène.
+	Algorithme :
+	2.1) Récupérer la première intersection du rayon de vue via un shader.
+	2.2) Récuperer la couleur du shader dans la direction du rayon de vue.
+
+2.1) Récupérer la première intersection du rayon de vue via un shader :
+	Donnée :
+		- rayon de vue : R
+		- scene : S
+	Algorithme : 
+		Pour chaque objet de la scène :
+			2.1.1) - récupérer le shader associé
+					combiner la couleur du rayon de vue lancé dans la direction de reflection et celui lancé dans la direction de transmission.
+
+
+
